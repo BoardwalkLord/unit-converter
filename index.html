@@ -22,13 +22,12 @@
             background: white;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .unit-selection, .conversion {
             display: flex;
             align-items: center;
-            flex-wrap: wrap;
-        }
-        h2 {
-            width: 100%;
-            margin: 0 0 10px 0;
+            justify-content: center;
+            margin: 10px 0;
         }
         select, input {
             padding: 8px;
@@ -37,428 +36,511 @@
             border-radius: 4px;
         }
         input[type="number"] {
-            width: 100px;
+            width: 120px;
         }
-        .output {
-            background-color: #f9f9f9;
-            color: #333;
+        span {
+            margin: 0 5px;
+        }
+        h2 {
+            text-align: center;
+            color: #555;
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
     <h1>Unit Converter</h1>
 
+    <!-- Length -->
     <div class="converter">
         <h2>Length</h2>
-        <input type="number" id="lengthInput" placeholder="Enter value">
-        <select id="lengthFrom">
-            <option value="m">Meters</option>
-            <option value="km">Kilometers</option>
-            <option value="ft">Feet</option>
-            <option value="in">Inches</option>
-        </select>
-        <span>=</span>
-        <input type="number" id="lengthOutput" class="output">
-        <select id="lengthTo">
-            <option value="m">Meters</option>
-            <option value="km">Kilometers</option>
-            <option value="ft">Feet</option>
-            <option value="in">Inches</option>
-        </select>
+        <div class="unit-selection">
+            <select id="lengthUnit1">
+                <option value="m" selected>Meters</option>
+                <option value="km">Kilometers</option>
+                <option value="ft">Feet</option>
+                <option value="in">Inches</option>
+                <option value="yd">Yards</option>
+                <option value="mi">Miles</option>
+            </select>
+            <span>to</span>
+            <select id="lengthUnit2">
+                <option value="m">Meters</option>
+                <option value="km" selected>Kilometers</option>
+                <option value="ft">Feet</option>
+                <option value="in">Inches</option>
+                <option value="yd">Yards</option>
+                <option value="mi">Miles</option>
+            </select>
+        </div>
+        <div class="conversion">
+            <input type="number" id="lengthInputA" placeholder="Enter value">
+            <span id="lengthUnit1Label">m</span>
+            <span>=</span>
+            <input type="number" id="lengthInputB" placeholder="Enter value">
+            <span id="lengthUnit2Label">km</span>
+        </div>
     </div>
 
-    <div class="converter">
-        <h2>Area</h2>
-        <input type="number" id="areaInput" placeholder="Enter value">
-        <select id="areaFrom">
-            <option value="sqm">Square Meters</option>
-            <option value="sqkm">Square Kilometers</option>
-            <option value="sqft">Square Feet</option>
-            <option value="acre">Acres</option>
-        </select>
-        <span>=</span>
-        <input type="number" id="areaOutput" class="output">
-        <select id="areaTo">
-            <option value="sqm">Square Meters</option>
-            <option value="sqkm">Square Kilometers</option>
-            <option value="sqft">Square Feet</option>
-            <option value="acre">Acres</option>
-        </select>
-    </div>
-
-    <div class="converter">
-        <h2>Volume</h2>
-        <input type="number" id="volumeInput" placeholder="Enter value">
-        <select id="volumeFrom">
-            <option value="l">Liters</option>
-            <option value="ml">Milliliters</option>
-            <option value="gal">Gallons (US)</option>
-            <option value="cuft">Cubic Feet</option>
-        </select>
-        <span>=</span>
-        <input type="number" id="volumeOutput" class="output">
-        <select id="volumeTo">
-            <option value="l">Liters</option>
-            <option value="ml">Milliliters</option>
-            <option value="gal">Gallons (US)</option>
-            <option value="cuft">Cubic Feet</option>
-        </select>
-    </div>
-
+    <!-- Weight -->
     <div class="converter">
         <h2>Weight</h2>
-        <input type="number" id="weightInput" placeholder="Enter value">
-        <select id="weightFrom">
-            <option value="kg">Kilograms</option>
-            <option value="g">Grams</option>
-            <option value="lb">Pounds</option>
-            <option value="oz">Ounces</option>
-        </select>
-        <span>=</span>
-        <input type="number" id="weightOutput" class="output">
-        <select id="weightTo">
-            <option value="kg">Kilograms</option>
-            <option value="g">Grams</option>
-            <option value="lb">Pounds</option>
-            <option value="oz">Ounces</option>
-        </select>
+        <div class="unit-selection">
+            <select id="weightUnit1">
+                <option value="kg" selected>Kilograms</option>
+                <option value="g">Grams</option>
+                <option value="lb">Pounds</option>
+                <option value="oz">Ounces</option>
+            </select>
+            <span>to</span>
+            <select id="weightUnit2">
+                <option value="kg">Kilograms</option>
+                <option value="g" selected>Grams</option>
+                <option value="lb">Pounds</option>
+                <option value="oz">Ounces</option>
+            </select>
+        </div>
+        <div class="conversion">
+            <input type="number" id="weightInputA" placeholder="Enter value">
+            <span id="weightUnit1Label">kg</span>
+            <span>=</span>
+            <input type="number" id="weightInputB" placeholder="Enter value">
+            <span id="weightUnit2Label">g</span>
+        </div>
     </div>
 
+    <!-- Temperature -->
     <div class="converter">
         <h2>Temperature</h2>
-        <input type="number" id="temperatureInput" placeholder="Enter value">
-        <select id="temperatureFrom">
-            <option value="c">Celsius</option>
-            <option value="f">Fahrenheit</option>
-            <option value="k">Kelvin</option>
-        </select>
-        <span>=</span>
-        <input type="number" id="temperatureOutput" class="output">
-        <select id="temperatureTo">
-            <option value="c">Celsius</option>
-            <option value="f">Fahrenheit</option>
-            <option value="k">Kelvin</option>
-        </select>
+        <div class="unit-selection">
+            <select id="temperatureUnit1">
+                <option value="c" selected>Celsius</option>
+                <option value="f">Fahrenheit</option>
+                <option value="k">Kelvin</option>
+            </select>
+            <span>to</span>
+            <select id="temperatureUnit2">
+                <option value="c">Celsius</option>
+                <option value="f" selected>Fahrenheit</option>
+                <option value="k">Kelvin</option>
+            </select>
+        </div>
+        <div class="conversion">
+            <input type="number" id="temperatureInputA" placeholder="Enter value">
+            <span id="temperatureUnit1Label">c</span>
+            <span>=</span>
+            <input type="number" id="temperatureInputB" placeholder="Enter value">
+            <span id="temperatureUnit2Label">f</span>
+        </div>
     </div>
 
+    <!-- Time -->
     <div class="converter">
         <h2>Time</h2>
-        <input type="number" id="timeInput" placeholder="Enter value">
-        <select id="timeFrom">
-            <option value="s">Seconds</option>
-            <option value="min">Minutes</option>
-            <option value="h">Hours</option>
-            <option value="d">Days</option>
-        </select>
-        <span>=</span>
-        <input type="number" id="timeOutput" class="output">
-        <select id="timeTo">
-            <option value="s">Seconds</option>
-            <option value="min">Minutes</option>
-            <option value="h">Hours</option>
-            <option value="d">Days</option>
-        </select>
+        <div class="unit-selection">
+            <select id="timeUnit1">
+                <option value="s" selected>Seconds</option>
+                <option value="min">Minutes</option>
+                <option value="h">Hours</option>
+                <option value="d">Days</option>
+            </select>
+            <span>to</span>
+            <select id="timeUnit2">
+                <option value="s">Seconds</option>
+                <option value="min" selected>Minutes</option>
+                <option value="h">Hours</option>
+                <option value="d">Days</option>
+            </select>
+        </div>
+        <div class="conversion">
+            <input type="number" id="timeInputA" placeholder="Enter value">
+            <span id="timeUnit1Label">s</span>
+            <span>=</span>
+            <input type="number" id="timeInputB" placeholder="Enter value">
+            <span id="timeUnit2Label">min</span>
+        </div>
     </div>
 
+    <!-- Area -->
+    <div class="converter">
+        <h2>Area</h2>
+        <div class="unit-selection">
+            <select id="areaUnit1">
+                <option value="sqm" selected>Square Meters</option>
+                <option value="sqkm">Square Kilometers</option>
+                <option value="sqft">Square Feet</option>
+                <option value="acre">Acres</option>
+            </select>
+            <span>to</span>
+            <select id="areaUnit2">
+                <option value="sqm">Square Meters</option>
+                <option value="sqkm" selected>Square Kilometers</option>
+                <option value="sqft">Square Feet</option>
+                <option value="acre">Acres</option>
+            </select>
+        </div>
+        <div class="conversion">
+            <input type="number" id="areaInputA" placeholder="Enter value">
+            <span id="areaUnit1Label">sqm</span>
+            <span>=</span>
+            <input type="number" id="areaInputB" placeholder="Enter value">
+            <span id="areaUnit2Label">sqkm</span>
+        </div>
+    </div>
+
+    <!-- Volume -->
+    <div class="converter">
+        <h2>Volume</h2>
+        <div class="unit-selection">
+            <select id="volumeUnit1">
+                <option value="l" selected>Liters</option>
+                <option value="ml">Milliliters</option>
+                <option value="gal">Gallons (US)</option>
+                <option value="cuft">Cubic Feet</option>
+            </select>
+            <span>to</span>
+            <select id="volumeUnit2">
+                <option value="l">Liters</option>
+                <option value="ml" selected>Milliliters</option>
+                <option value="gal">Gallons (US)</option>
+                <option value="cuft">Cubic Feet</option>
+            </select>
+        </div>
+        <div class="conversion">
+            <input type="number" id="volumeInputA" placeholder="Enter value">
+            <span id="volumeUnit1Label">l</span>
+            <span>=</span>
+            <input type="number" id="volumeInputB" placeholder="Enter value">
+            <span id="volumeUnit2Label">ml</span>
+        </div>
+    </div>
+
+    <!-- Pressure -->
     <div class="converter">
         <h2>Pressure</h2>
-        <input type="number" id="pressureInput" placeholder="Enter value">
-        <select id="pressureFrom">
-            <option value="pa">Pascals</option>
-            <option value="kpa">Kilopascals</option>
-            <option value="bar">Bars</option>
-            <option value="psi">PSI</option>
-        </select>
-        <span>=</span>
-        <input type="number" id="pressureOutput" class="output">
-        <select id="pressureTo">
-            <option value="pa">Pascals</option>
-            <option value="kpa">Kilopascals</option>
-            <option value="bar">Bars</option>
-            <option value="psi">PSI</option>
-        </select>
+        <div class="unit-selection">
+            <select id="pressureUnit1">
+                <option value="pa" selected>Pascals</option>
+                <option value="kpa">Kilopascals</option>
+                <option value="bar">Bars</option>
+                <option value="psi">PSI</option>
+            </select>
+            <span>to</span>
+            <select id="pressureUnit2">
+                <option value="pa">Pascals</option>
+                <option value="kpa" selected>Kilopascals</option>
+                <option value="bar">Bars</option>
+                <option value="psi">PSI</option>
+            </select>
+        </div>
+        <div class="conversion">
+            <input type="number" id="pressureInputA" placeholder="Enter value">
+            <span id="pressureUnit1Label">pa</span>
+            <span>=</span>
+            <input type="number" id="pressureInputB" placeholder="Enter value">
+            <span id="pressureUnit2Label">kpa</span>
+        </div>
     </div>
 
+    <!-- Energy -->
     <div class="converter">
         <h2>Energy</h2>
-        <input type="number" id="energyInput" placeholder="Enter value">
-        <select id="energyFrom">
-            <option value="j">Joules</option>
-            <option value="kj">Kilojoules</option>
-            <option value="cal">Calories</option>
-            <option value="wh">Watt-hours</option>
-        </select>
-        <span>=</span>
-        <input type="number" id="energyOutput" class="output">
-        <select id="energyTo">
-            <option value="j">Joules</option>
-            <option value="kj">Kilojoules</option>
-            <option value="cal">Calories</option>
-            <option value="wh">Watt-hours</option>
-        </select>
+        <div class="unit-selection">
+            <select id="energyUnit1">
+                <option value="j" selected>Joules</option>
+                <option value="kj">Kilojoules</option>
+                <option value="cal">Calories</option>
+                <option value="wh">Watt-hours</option>
+            </select>
+            <span>to</span>
+            <select id="energyUnit2">
+                <option value="j">Joules</option>
+                <option value="kj" selected>Kilojoules</option>
+                <option value="cal">Calories</option>
+                <option value="wh">Watt-hours</option>
+            </select>
+        </div>
+        <div class="conversion">
+            <input type="number" id="energyInputA" placeholder="Enter value">
+            <span id="energyUnit1Label">j</span>
+            <span>=</span>
+            <input type="number" id="energyInputB" placeholder="Enter value">
+            <span id="energyUnit2Label">kj</span>
+        </div>
     </div>
 
+    <!-- Power -->
     <div class="converter">
         <h2>Power</h2>
-        <input type="number" id="powerInput" placeholder="Enter value">
-        <select id="powerFrom">
-            <option value="w">Watts</option>
-            <option value="kw">Kilowatts</option>
-            <option value="hp">Horsepower</option>
-        </select>
-        <span>=</span>
-        <input type="number" id="powerOutput" class="output">
-        <select id="powerTo">
-            <option value="w">Watts</option>
-            <option value="kw">Kilowatts</option>
-            <option value="hp">Horsepower</option>
-        </select>
+        <div class="unit-selection">
+            <select id="powerUnit1">
+                <option value="w" selected>Watts</option>
+                <option value="kw">Kilowatts</option>
+                <option value="hp">Horsepower</option>
+            </select>
+            <span>to</span>
+            <select id="powerUnit2">
+                <option value="w">Watts</option>
+                <option value="kw" selected>Kilowatts</option>
+                <option value="hp">Horsepower</option>
+            </select>
+        </div>
+        <div class="conversion">
+            <input type="number" id="powerInputA" placeholder="Enter value">
+            <span id="powerUnit1Label">w</span>
+            <span>=</span>
+            <input type="number" id="powerInputB" placeholder="Enter value">
+            <span id="powerUnit2Label">kw</span>
+        </div>
     </div>
 
+    <!-- Speed -->
     <div class="converter">
         <h2>Speed</h2>
-        <input type="number" id="speedInput" placeholder="Enter value">
-        <select id="speedFrom">
-            <option value="mps">Meters/Second</option>
-            <option value="kmph">Kilometers/Hour</option>
-            <option value="mph">Miles/Hour</option>
-            <option value="knot">Knots</option>
-        </select>
-        <span>=</span>
-        <input type="number" id="speedOutput" class="output">
-        <select id="speedTo">
-            <option value="mps">Meters/Second</option>
-            <option value="kmph">Kilometers/Hour</option>
-            <option value="mph">Miles/Hour</option>
-            <option value="knot">Knots</option>
-        </select>
+        <div class="unit-selection">
+            <select id="speedUnit1">
+                <option value="mps" selected>Meters/Second</option>
+                <option value="kmph">Kilometers/Hour</option>
+                <option value="mph">Miles/Hour</option>
+                <option value="knot">Knots</option>
+            </select>
+            <span>to</span>
+            <select id="speedUnit2">
+                <option value="mps">Meters/Second</option>
+                <option value="kmph" selected>Kilometers/Hour</option>
+                <option value="mph">Miles/Hour</option>
+                <option value="knot">Knots</option>
+            </select>
+        </div>
+        <div class="conversion">
+            <input type="number" id="speedInputA" placeholder="Enter value">
+            <span id="speedUnit1Label">mps</span>
+            <span>=</span>
+            <input type="number" id="speedInputB" placeholder="Enter value">
+            <span id="speedUnit2Label">kmph</span>
+        </div>
     </div>
 
+    <!-- Electrical Current -->
     <div class="converter">
         <h2>Electrical Current</h2>
-        <input type="number" id="currentInput" placeholder="Enter value">
-        <select id="currentFrom">
-            <option value="a">Amperes</option>
-            <option value="ma">Milliamperes</option>
-            <option value="ka">Kiloamperes</option>
-        </select>
-        <span>=</span>
-        <input type="number" id="currentOutput" class="output">
-        <select id="currentTo">
-            <option value="a">Amperes</option>
-            <option value="ma">Milliamperes</option>
-            <option value="ka">Kiloamperes</option>
-        </select>
+        <div class="unit-selection">
+            <select id="currentUnit1">
+                <option value="a" selected>Amperes</option>
+                <option value="ma">Milliamperes</option>
+                <option value="ka">Kiloamperes</option>
+            </select>
+            <span>to</span>
+            <select id="currentUnit2">
+                <option value="a">Amperes</option>
+                <option value="ma" selected>Milliamperes</option>
+                <option value="ka">Kiloamperes</option>
+            </select>
+        </div>
+        <div class="conversion">
+            <input type="number" id="currentInputA" placeholder="Enter value">
+            <span id="currentUnit1Label">a</span>
+            <span>=</span>
+            <input type="number" id="currentInputB" placeholder="Enter value">
+            <span id="currentUnit2Label">ma</span>
+        </div>
     </div>
 
     <script>
-        // Conversion Functions
+        // Conversion Functions for All Categories
         const converters = {
             length: {
-                forward: (value, from, to) => {
-                    const toMeters = { 'm': value, 'km': value * 1000, 'ft': value * 0.3048, 'in': value * 0.0254 };
-                    const meters = toMeters[from];
-                    const fromMeters = { 'm': meters, 'km': meters / 1000, 'ft': meters / 0.3048, 'in': meters / 0.0254 };
-                    return fromMeters[to];
+                toBase: (value, unit) => {
+                    const toMeters = { 'm': value, 'km': value * 1000, 'ft': value * 0.3048, 'in': value * 0.0254, 'yd': value * 0.9144, 'mi': value * 1609.344 };
+                    return toMeters[unit];
                 },
-                reverse: (value, from, to) => {
-                    const toMeters = { 'm': value, 'km': value * 1000, 'ft': value * 0.3048, 'in': value * 0.0254 };
-                    const meters = toMeters[to];
-                    const fromMeters = { 'm': meters, 'km': meters * 1000, 'ft': meters * 0.3048, 'in': meters * 0.0254 };
-                    return fromMeters[from];
-                }
-            },
-            area: {
-                forward: (value, from, to) => {
-                    const toSqm = { 'sqm': value, 'sqkm': value * 1e6, 'sqft': value * 0.092903, 'acre': value * 4046.86 };
-                    const sqm = toSqm[from];
-                    const fromSqm = { 'sqm': sqm, 'sqkm': sqm / 1e6, 'sqft': sqm / 0.092903, 'acre': sqm / 4046.86 };
-                    return fromSqm[to];
+                fromBase: (meters, unit) => {
+                    const fromMeters = { 'm': meters, 'km': meters / 1000, 'ft': meters / 0.3048, 'in': meters / 0.0254, 'yd': meters / 0.9144, 'mi': meters / 1609.344 };
+                    return fromMeters[unit];
                 },
-                reverse: (value, from, to) => {
-                    const toSqm = { 'sqm': value, 'sqkm': value * 1e6, 'sqft': value * 0.092903, 'acre': value * 4046.86 };
-                    const sqm = toSqm[to];
-                    const fromSqm = { 'sqm': sqm, 'sqkm': sqm * 1e6, 'sqft': sqm * 0.092903, 'acre': sqm * 4046.86 };
-                    return fromSqm[from];
-                }
-            },
-            volume: {
-                forward: (value, from, to) => {
-                    const toLiters = { 'l': value, 'ml': value / 1000, 'gal': value * 3.78541, 'cuft': value * 28.3168 };
-                    const liters = toLiters[from];
-                    const fromLiters = { 'l': liters, 'ml': liters * 1000, 'gal': liters / 3.78541, 'cuft': liters / 28.3168 };
-                    return fromLiters[to];
-                },
-                reverse: (value, from, to) => {
-                    const toLiters = { 'l': value, 'ml': value * 1000, 'gal': value * 3.78541, 'cuft': value * 28.3168 };
-                    const liters = toLiters[to];
-                    const fromLiters = { 'l': liters, 'ml': liters / 1000, 'gal': liters * 3.78541, 'cuft': liters * 28.3168 };
-                    return fromLiters[from];
-                }
+                decimalPlaces: { 'm': 4, 'km': 5, 'ft': 4, 'in': 4, 'yd': 4, 'mi': 6 }
             },
             weight: {
-                forward: (value, from, to) => {
+                toBase: (value, unit) => {
                     const toKg = { 'kg': value, 'g': value / 1000, 'lb': value * 0.453592, 'oz': value * 0.0283495 };
-                    const kg = toKg[from];
-                    const fromKg = { 'kg': kg, 'g': kg * 1000, 'lb': kg / 0.453592, 'oz': kg / 0.0283495 };
-                    return fromKg[to];
+                    return toKg[unit];
                 },
-                reverse: (value, from, to) => {
-                    const toKg = { 'kg': value, 'g': value * 1000, 'lb': value * 0.453592, 'oz': value * 0.0283495 };
-                    const kg = toKg[to];
-                    const fromKg = { 'kg': kg, 'g': kg / 1000, 'lb': kg * 0.453592, 'oz': kg * 0.0283495 };
-                    return fromKg[from];
-                }
+                fromBase: (kg, unit) => {
+                    const fromKg = { 'kg': kg, 'g': kg * 1000, 'lb': kg / 0.453592, 'oz': kg / 0.0283495 };
+                    return fromKg[unit];
+                },
+                decimalPlaces: { 'kg': 4, 'g': 2, 'lb': 4, 'oz': 4 }
             },
             temperature: {
-                forward: (value, from, to) => {
+                toBase: (value, unit) => {
                     const toCelsius = { 'c': value, 'f': (value - 32) * 5/9, 'k': value - 273.15 };
-                    const celsius = toCelsius[from];
-                    const fromCelsius = { 'c': celsius, 'f': (celsius * 9/5) + 32, 'k': celsius + 273.15 };
-                    return fromCelsius[to];
+                    return toCelsius[unit];
                 },
-                reverse: (value, from, to) => {
-                    const toCelsius = { 'c': value, 'f': (value - 32) * 5/9, 'k': value - 273.15 };
-                    const celsius = toCelsius[to];
+                fromBase: (celsius, unit) => {
                     const fromCelsius = { 'c': celsius, 'f': (celsius * 9/5) + 32, 'k': celsius + 273.15 };
-                    return fromCelsius[from];
-                }
+                    return fromCelsius[unit];
+                },
+                decimalPlaces: { 'c': 2, 'f': 2, 'k': 2 }
             },
             time: {
-                forward: (value, from, to) => {
+                toBase: (value, unit) => {
                     const toSeconds = { 's': value, 'min': value * 60, 'h': value * 3600, 'd': value * 86400 };
-                    const seconds = toSeconds[from];
-                    const fromSeconds = { 's': seconds, 'min': seconds / 60, 'h': seconds / 3600, 'd': seconds / 86400 };
-                    return fromSeconds[to];
+                    return toSeconds[unit];
                 },
-                reverse: (value, from, to) => {
-                    const toSeconds = { 's': value, 'min': value * 60, 'h': value * 3600, 'd': value * 86400 };
-                    const seconds = toSeconds[to];
+                fromBase: (seconds, unit) => {
                     const fromSeconds = { 's': seconds, 'min': seconds / 60, 'h': seconds / 3600, 'd': seconds / 86400 };
-                    return fromSeconds[from];
-                }
+                    return fromSeconds[unit];
+                },
+                decimalPlaces: { 's': 2, 'min': 4, 'h': 6, 'd': 8 }
+            },
+            area: {
+                toBase: (value, unit) => {
+                    const toSqm = { 'sqm': value, 'sqkm': value * 1e6, 'sqft': value * 0.092903, 'acre': value * 4046.86 };
+                    return toSqm[unit];
+                },
+                fromBase: (sqm, unit) => {
+                    const fromSqm = { 'sqm': sqm, 'sqkm': sqm / 1e6, 'sqft': sqm / 0.092903, 'acre': sqm / 4046.86 };
+                    return fromSqm[unit];
+                },
+                decimalPlaces: { 'sqm': 4, 'sqkm': 8, 'sqft': 4, 'acre': 6 }
+            },
+            volume: {
+                toBase: (value, unit) => {
+                    const toLiters = { 'l': value, 'ml': value / 1000, 'gal': value * 3.78541, 'cuft': value * 28.3168 };
+                    return toLiters[unit];
+                },
+                fromBase: (liters, unit) => {
+                    const fromLiters = { 'l': liters, 'ml': liters * 1000, 'gal': liters / 3.78541, 'cuft': liters / 28.3168 };
+                    return fromLiters[unit];
+                },
+                decimalPlaces: { 'l': 4, 'ml': 2, 'gal': 4, 'cuft': 4 }
             },
             pressure: {
-                forward: (value, from, to) => {
+                toBase: (value, unit) => {
                     const toPa = { 'pa': value, 'kpa': value * 1000, 'bar': value * 1e5, 'psi': value * 6894.76 };
-                    const pa = toPa[from];
-                    const fromPa = { 'pa': pa, 'kpa': pa / 1000, 'bar': pa / 1e5, 'psi': pa / 6894.76 };
-                    return fromPa[to];
+                    return toPa[unit];
                 },
-                reverse: (value, from, to) => {
-                    const toPa = { 'pa': value, 'kpa': value * 1000, 'bar': value * 1e5, 'psi': value * 6894.76 };
-                    const pa = toPa[to];
+                fromBase: (pa, unit) => {
                     const fromPa = { 'pa': pa, 'kpa': pa / 1000, 'bar': pa / 1e5, 'psi': pa / 6894.76 };
-                    return fromPa[from];
-                }
+                    return fromPa[unit];
+                },
+                decimalPlaces: { 'pa': 2, 'kpa': 4, 'bar': 6, 'psi': 4 }
             },
             energy: {
-                forward: (value, from, to) => {
+                toBase: (value, unit) => {
                     const toJoules = { 'j': value, 'kj': value * 1000, 'cal': value * 4.184, 'wh': value * 3600 };
-                    const joules = toJoules[from];
-                    const fromJoules = { 'j': joules, 'kj': joules / 1000, 'cal': joules / 4.184, 'wh': joules / 3600 };
-                    return fromJoules[to];
+                    return toJoules[unit];
                 },
-                reverse: (value, from, to) => {
-                    const toJoules = { 'j': value, 'kj': value * 1000, 'cal': value * 4.184, 'wh': value * 3600 };
-                    const joules = toJoules[to];
+                fromBase: (joules, unit) => {
                     const fromJoules = { 'j': joules, 'kj': joules / 1000, 'cal': joules / 4.184, 'wh': joules / 3600 };
-                    return fromJoules[from];
-                }
+                    return fromJoules[unit];
+                },
+                decimalPlaces: { 'j': 2, 'kj': 4, 'cal': 4, 'wh': 4 }
             },
             power: {
-                forward: (value, from, to) => {
+                toBase: (value, unit) => {
                     const toWatts = { 'w': value, 'kw': value * 1000, 'hp': value * 745.7 };
-                    const watts = toWatts[from];
-                    const fromWatts = { 'w': watts, 'kw': watts / 1000, 'hp': watts / 745.7 };
-                    return fromWatts[to];
+                    return toWatts[unit];
                 },
-                reverse: (value, from, to) => {
-                    const toWatts = { 'w': value, 'kw': value * 1000, 'hp': value * 745.7 };
-                    const watts = toWatts[to];
+                fromBase: (watts, unit) => {
                     const fromWatts = { 'w': watts, 'kw': watts / 1000, 'hp': watts / 745.7 };
-                    return fromWatts[from];
-                }
+                    return fromWatts[unit];
+                },
+                decimalPlaces: { 'w': 2, 'kw': 4, 'hp': 4 }
             },
             speed: {
-                forward: (value, from, to) => {
+                toBase: (value, unit) => {
                     const toMps = { 'mps': value, 'kmph': value / 3.6, 'mph': value / 2.237, 'knot': value / 1.944 };
-                    const mps = toMps[from];
-                    const fromMps = { 'mps': mps, 'kmph': mps * 3.6, 'mph': mps * 2.237, 'knot': mps * 1.944 };
-                    return fromMps[to];
+                    return toMps[unit];
                 },
-                reverse: (value, from, to) => {
-                    const toMps = { 'mps': value, 'kmph': value * 3.6, 'mph': value * 2.237, 'knot': value * 1.944 };
-                    const mps = toMps[to];
-                    const fromMps = { 'mps': mps, 'kmph': mps / 3.6, 'mph': mps / 2.237, 'knot': mps / 1.944 };
-                    return fromMps[from];
-                }
+                fromBase: (mps, unit) => {
+                    const fromMps = { 'mps': mps, 'kmph': mps * 3.6, 'mph': mps * 2.237, 'knot': mps * 1.944 };
+                    return fromMps[unit];
+                },
+                decimalPlaces: { 'mps': 4, 'kmph': 4, 'mph': 4, 'knot': 4 }
             },
             current: {
-                forward: (value, from, to) => {
+                toBase: (value, unit) => {
                     const toAmps = { 'a': value, 'ma': value / 1000, 'ka': value * 1000 };
-                    const amps = toAmps[from];
-                    const fromAmps = { 'a': amps, 'ma': amps * 1000, 'ka': amps / 1000 };
-                    return fromAmps[to];
+                    return toAmps[unit];
                 },
-                reverse: (value, from, to) => {
-                    const toAmps = { 'a': value, 'ma': value * 1000, 'ka': value / 1000 };
-                    const amps = toAmps[to];
-                    const fromAmps = { 'a': amps, 'ma': amps / 1000, 'ka': amps * 1000 };
-                    return fromAmps[from];
-                }
+                fromBase: (amps, unit) => {
+                    const fromAmps = { 'a': amps, 'ma': amps * 1000, 'ka': amps / 1000 };
+                    return fromAmps[unit];
+                },
+                decimalPlaces: { 'a': 4, 'ma': 2, 'ka': 6 }
             }
         };
+
+        // Generic Conversion Functions
+        function forward(value, fromUnit, toUnit, category) {
+            const base = converters[category].toBase(value, fromUnit);
+            return converters[category].fromBase(base, toUnit);
+        }
+
+        function reverse(value, toUnit, fromUnit, category) {
+            const base = converters[category].toBase(value, toUnit);
+            return converters[category].fromBase(base, fromUnit);
+        }
 
         // Track last edited input for each category
         const lastEdited = {};
 
-        // Update Function
-        function updateConverter(category, source) {
-            const input = document.getElementById(`${category}Input`);
-            const from = document.getElementById(`${category}From`);
-            const output = document.getElementById(`${category}Output`);
-            const to = document.getElementById(`${category}To`);
-            
-            const inputValue = parseFloat(input.value);
-            const outputValue = parseFloat(output.value);
-            const fromUnit = from.value;
-            const toUnit = to.value;
+        // Setup Converter for Each Category
+        function setupConverter(category) {
+            const unit1Select = document.getElementById(`${category}Unit1`);
+            const unit2Select = document.getElementById(`${category}Unit2`);
+            const inputA = document.getElementById(`${category}InputA`);
+            const inputB = document.getElementById(`${category}InputB`);
+            const unit1Label = document.getElementById(`${category}Unit1Label`);
+            const unit2Label = document.getElementById(`${category}Unit2Label`);
 
-            if (source === 'input' && !isNaN(inputValue)) {
-                const converted = converters[category].forward(inputValue, fromUnit, toUnit);
-                output.value = converted.toFixed(2);
-            } else if (source === 'output' && !isNaN(outputValue)) {
-                const converted = converters[category].reverse(outputValue, fromUnit, toUnit);
-                input.value = converted.toFixed(2);
-            } else {
-                if (source === 'input') output.value = '';
-                if (source === 'output') input.value = '';
+            function updateLabels() {
+                unit1Label.textContent = unit1Select.value;
+                unit2Label.textContent = unit2Select.value;
             }
-        }
 
-        // Setup Event Listeners
-        function setupListeners(category) {
-            const input = document.getElementById(`${category}Input`);
-            const from = document.getElementById(`${category}From`);
-            const output = document.getElementById(`${category}Output`);
-            const to = document.getElementById(`${category}To`);
-            
-            input.addEventListener('input', () => {
-                lastEdited[category] = 'input';
-                updateConverter(category, 'input');
+            function updateConversion(source) {
+                const valueA = parseFloat(inputA.value);
+                const valueB = parseFloat(inputB.value);
+                const fromUnit = unit1Select.value;
+                const toUnit = unit2Select.value;
+
+                if (source === 'inputA' && !isNaN(valueA)) {
+                    const converted = forward(valueA, fromUnit, toUnit, category);
+                    inputB.value = converted.toFixed(converters[category].decimalPlaces[toUnit]);
+                } else if (source === 'inputB' && !isNaN(valueB)) {
+                    const converted = reverse(valueB, toUnit, fromUnit, category);
+                    inputA.value = converted.toFixed(converters[category].decimalPlaces[fromUnit]);
+                } else {
+                    if (source === 'inputA') inputB.value = '';
+                    if (source === 'inputB') inputA.value = '';
+                }
+            }
+
+            unit1Select.addEventListener('change', () => {
+                updateLabels();
+                updateConversion(lastEdited[category] || 'inputA');
             });
-            output.addEventListener('input', () => {
-                lastEdited[category] = 'output';
-                updateConverter(category, 'output');
+            unit2Select.addEventListener('change', () => {
+                updateLabels();
+                updateConversion(lastEdited[category] || 'inputA');
             });
-            from.addEventListener('change', () => updateConverter(category, lastEdited[category] || 'input'));
-            to.addEventListener('change', () => updateConverter(category, lastEdited[category] || 'input'));
+            inputA.addEventListener('input', () => {
+                lastEdited[category] = 'inputA';
+                updateConversion('inputA');
+            });
+            inputB.addEventListener('input', () => {
+                lastEdited[category] = 'inputB';
+                updateConversion('inputB');
+            });
+
+            updateLabels();
         }
 
         // Initialize all converters
-        const categories = ['length', 'area', 'volume', 'weight', 'temperature', 'time', 'pressure', 'energy', 'power', 'speed', 'current'];
-        categories.forEach(category => setupListeners(category));
+        const categories = ['length', 'weight', 'temperature', 'time', 'area', 'volume', 'pressure', 'energy', 'power', 'speed', 'current'];
+        categories.forEach(category => setupConverter(category));
     </script>
 </body>
 </html>
