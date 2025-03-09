@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 600px;
+            max-width: 800px;
             margin: 20px auto;
             padding: 20px;
             background-color: #f4f4f4;
@@ -59,136 +59,44 @@
     </div>
 
     <div class="converter">
-        <h2>Weight</h2>
-        <input type="number" id="weightInput" placeholder="Enter value">
-        <select id="weightFrom">
-            <option value="kg">Kilograms</option>
-            <option value="g">Grams</option>
-            <option value="lb">Pounds</option>
-            <option value="oz">Ounces</option>
+        <h2>Area</h2>
+        <input type="number" id="areaInput" placeholder="Enter value">
+        <select id="areaFrom">
+            <option value="sqm">Square Meters</option>
+            <option value="sqkm">Square Kilometers</option>
+            <option value="sqft">Square Feet</option>
+            <option value="acre">Acres</option>
         </select>
         <span>to</span>
-        <select id="weightTo">
-            <option value="kg">Kilograms</option>
-            <option value="g">Grams</option>
-            <option value="lb">Pounds</option>
-            <option value="oz">Ounces</option>
+        <select id="areaTo">
+            <option value="sqm">Square Meters</option>
+            <option value="sqkm">Square Kilometers</option>
+            <option value="sqft">Square Feet</option>
+            <option value="acre">Acres</option>
         </select>
-        <div id="weightResult"></div>
+        <div id="areaResult"></div>
     </div>
 
     <div class="converter">
-        <h2>Temperature</h2>
-        <input type="number" id="tempInput" placeholder="Enter value">
-        <select id="tempFrom">
-            <option value="c">Celsius</option>
-            <option value="f">Fahrenheit</option>
-            <option value="k">Kelvin</option>
+        <h2>Volume</h2>
+        <input type="number" id="volumeInput" placeholder="Enter value">
+        <select id="volumeFrom">
+            <option value="l">Liters</option>
+            <option value="ml">Milliliters</option>
+            <option value="gal">Gallons (US)</option>
+            <option value="cuft">Cubic Feet</option>
         </select>
         <span>to</span>
-        <select id="tempTo">
-            <option value="c">Celsius</option>
-            <option value="f">Fahrenheit</option>
-            <option value="k">Kelvin</option>
+        <select id="volumeTo">
+            <option value="l">Liters</option>
+            <option value="ml">Milliliters</option>
+            <option value="gal">Gallons (US)</option>
+            <option value="cuft">Cubic Feet</option>
         </select>
-        <div id="tempResult"></div>
+        <div id="volumeResult"></div>
     </div>
 
-    <script>
-        // Length Conversion
-        function convertLength() {
-            const value = parseFloat(document.getElementById('lengthInput').value);
-            const from = document.getElementById('lengthFrom').value;
-            const to = document.getElementById('lengthTo').value;
-            let result;
-
-            const toMeters = {
-                'm': value,
-                'km': value * 1000,
-                'ft': value * 0.3048,
-                'in': value * 0.0254
-            };
-            const meters = toMeters[from];
-
-            const fromMeters = {
-                'm': meters,
-                'km': meters / 1000,
-                'ft': meters / 0.3048,
-                'in': meters / 0.0254
-            };
-            result = fromMeters[to];
-
-            document.getElementById('lengthResult').innerText = 
-                isNaN(result) ? '' : `${value} ${from} = ${result.toFixed(2)} ${to}`;
-        }
-
-        // Weight Conversion
-        function convertWeight() {
-            const value = parseFloat(document.getElementById('weightInput').value);
-            const from = document.getElementById('weightFrom').value;
-            const to = document.getElementById('weightTo').value;
-            let result;
-
-            const toKg = {
-                'kg': value,
-                'g': value / 1000,
-                'lb': value * 0.453592,
-                'oz': value * 0.0283495
-            };
-            const kg = toKg[from];
-
-            const fromKg = {
-                'kg': kg,
-                'g': kg * 1000,
-                'lb': kg / 0.453592,
-                'oz': kg / 0.0283495
-            };
-            result = fromKg[to];
-
-            document.getElementById('weightResult').innerText = 
-                isNaN(result) ? '' : `${value} ${from} = ${result.toFixed(2)} ${to}`;
-        }
-
-        // Temperature Conversion
-        function convertTemp() {
-            const value = parseFloat(document.getElementById('tempInput').value);
-            const from = document.getElementById('tempFrom').value;
-            const to = document.getElementById('tempTo').value;
-            let result;
-
-            const toCelsius = {
-                'c': value,
-                'f': (value - 32) * 5/9,
-                'k': value - 273.15
-            };
-            const celsius = toCelsius[from];
-
-            const fromCelsius = {
-                'c': celsius,
-                'f': (celsius * 9/5) + 32,
-                'k': celsius + 273.15
-            };
-            result = fromCelsius[to];
-
-            document.getElementById('tempResult').innerText = 
-                isNaN(result) ? '' : `${value} ${from} = ${result.toFixed(2)} ${to}`;
-        }
-
-        // Event Listeners for real-time updates
-        function addEventListeners(inputId, fromId, toId, convertFunc) {
-            const input = document.getElementById(inputId);
-            const from = document.getElementById(fromId);
-            const to = document.getElementById(toId);
-
-            input.addEventListener('input', convertFunc);
-            from.addEventListener('change', convertFunc);
-            to.addEventListener('change', convertFunc);
-        }
-
-        // Attach listeners to each converter
-        addEventListeners('lengthInput', 'lengthFrom', 'lengthTo', convertLength);
-        addEventListeners('weightInput', 'weightFrom', 'weightTo', convertWeight);
-        addEventListeners('tempInput', 'tempFrom', 'tempTo', convertTemp);
-    </script>
-</body>
-</html>
+    <div class="converter">
+        <h2>Weight</h2>
+        <input type="number" id="weightInput" placeholder="Enter value">
+        <select
