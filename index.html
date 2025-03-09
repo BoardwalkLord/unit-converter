@@ -23,19 +23,11 @@
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        select, input, button {
+        select, input {
             padding: 8px;
             margin: 5px;
             border: 1px solid #ddd;
             border-radius: 4px;
-        }
-        button {
-            background-color: #007BFF;
-            color: white;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
         }
         #result {
             margin-top: 10px;
@@ -63,7 +55,6 @@
             <option value="ft">Feet</option>
             <option value="in">Inches</option>
         </select>
-        <button onclick="convertLength()">Convert</button>
         <div id="lengthResult"></div>
     </div>
 
@@ -83,7 +74,6 @@
             <option value="lb">Pounds</option>
             <option value="oz">Ounces</option>
         </select>
-        <button onclick="convertWeight()">Convert</button>
         <div id="weightResult"></div>
     </div>
 
@@ -101,18 +91,17 @@
             <option value="f">Fahrenheit</option>
             <option value="k">Kelvin</option>
         </select>
-        <button onclick="convertTemp()">Convert</button>
         <div id="tempResult"></div>
     </div>
 
     <script>
+        // Length Conversion
         function convertLength() {
             const value = parseFloat(document.getElementById('lengthInput').value);
             const from = document.getElementById('lengthFrom').value;
             const to = document.getElementById('lengthTo').value;
             let result;
 
-            // Convert to meters first
             const toMeters = {
                 'm': value,
                 'km': value * 1000,
@@ -121,7 +110,6 @@
             };
             const meters = toMeters[from];
 
-            // Convert from meters to target unit
             const fromMeters = {
                 'm': meters,
                 'km': meters / 1000,
@@ -131,16 +119,16 @@
             result = fromMeters[to];
 
             document.getElementById('lengthResult').innerText = 
-                isNaN(result) ? 'Please enter a valid number' : `${value} ${from} = ${result.toFixed(2)} ${to}`;
+                isNaN(result) ? '' : `${value} ${from} = ${result.toFixed(2)} ${to}`;
         }
 
+        // Weight Conversion
         function convertWeight() {
             const value = parseFloat(document.getElementById('weightInput').value);
             const from = document.getElementById('weightFrom').value;
             const to = document.getElementById('weightTo').value;
             let result;
 
-            // Convert to kilograms first
             const toKg = {
                 'kg': value,
                 'g': value / 1000,
@@ -149,7 +137,6 @@
             };
             const kg = toKg[from];
 
-            // Convert from kg to target unit
             const fromKg = {
                 'kg': kg,
                 'g': kg * 1000,
@@ -159,16 +146,16 @@
             result = fromKg[to];
 
             document.getElementById('weightResult').innerText = 
-                isNaN(result) ? 'Please enter a valid number' : `${value} ${from} = ${result.toFixed(2)} ${to}`;
+                isNaN(result) ? '' : `${value} ${from} = ${result.toFixed(2)} ${to}`;
         }
 
+        // Temperature Conversion
         function convertTemp() {
             const value = parseFloat(document.getElementById('tempInput').value);
             const from = document.getElementById('tempFrom').value;
             const to = document.getElementById('tempTo').value;
             let result;
 
-            // Convert to Celsius first
             const toCelsius = {
                 'c': value,
                 'f': (value - 32) * 5/9,
@@ -176,7 +163,6 @@
             };
             const celsius = toCelsius[from];
 
-            // Convert from Celsius to target unit
             const fromCelsius = {
                 'c': celsius,
                 'f': (celsius * 9/5) + 32,
@@ -185,8 +171,24 @@
             result = fromCelsius[to];
 
             document.getElementById('tempResult').innerText = 
-                isNaN(result) ? 'Please enter a valid number' : `${value} ${from} = ${result.toFixed(2)} ${to}`;
+                isNaN(result) ? '' : `${value} ${from} = ${result.toFixed(2)} ${to}`;
         }
+
+        // Event Listeners for real-time updates
+        function addEventListeners(inputId, fromId, toId, convertFunc) {
+            const input = document.getElementById(inputId);
+            const from = document.getElementById(fromId);
+            const to = document.getElementById(toId);
+
+            input.addEventListener('input', convertFunc);
+            from.addEventListener('change', convertFunc);
+            to.addEventListener('change', convertFunc);
+        }
+
+        // Attach listeners to each converter
+        addEventListeners('lengthInput', 'lengthFrom', 'lengthTo', convertLength);
+        addEventListeners('weightInput', 'weightFrom', 'weightTo', convertWeight);
+        addEventListeners('tempInput', 'tempFrom', 'tempTo', convertTemp);
     </script>
 </body>
 </html>
