@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 600px;
+            max-width: 800px;
             margin: 20px auto;
             padding: 20px;
             background-color: #f4f4f4;
@@ -23,21 +23,13 @@
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        select, input, button {
+        select, input {
             padding: 8px;
             margin: 5px;
             border: 1px solid #ddd;
             border-radius: 4px;
         }
-        button {
-            background-color: #007BFF;
-            color: white;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        #result {
+        .result {
             margin-top: 10px;
             font-weight: bold;
             color: #333;
@@ -63,8 +55,45 @@
             <option value="ft">Feet</option>
             <option value="in">Inches</option>
         </select>
-        <button onclick="convertLength()">Convert</button>
-        <div id="lengthResult"></div>
+        <div class="result" id="lengthResult"></div>
+    </div>
+
+    <div class="converter">
+        <h2>Area</h2>
+        <input type="number" id="areaInput" placeholder="Enter value">
+        <select id="areaFrom">
+            <option value="sqm">Square Meters</option>
+            <option value="sqkm">Square Kilometers</option>
+            <option value="sqft">Square Feet</option>
+            <option value="acre">Acres</option>
+        </select>
+        <span>to</span>
+        <select id="areaTo">
+            <option value="sqm">Square Meters</option>
+            <option value="sqkm">Square Kilometers</option>
+            <option value="sqft">Square Feet</option>
+            <option value="acre">Acres</option>
+        </select>
+        <div class="result" id="areaResult"></div>
+    </div>
+
+    <div class="converter">
+        <h2>Volume</h2>
+        <input type="number" id="volumeInput" placeholder="Enter value">
+        <select id="volumeFrom">
+            <option value="l">Liters</option>
+            <option value="ml">Milliliters</option>
+            <option value="gal">Gallons (US)</option>
+            <option value="cuft">Cubic Feet</option>
+        </select>
+        <span>to</span>
+        <select id="volumeTo">
+            <option value="l">Liters</option>
+            <option value="ml">Milliliters</option>
+            <option value="gal">Gallons (US)</option>
+            <option value="cuft">Cubic Feet</option>
+        </select>
+        <div class="result" id="volumeResult"></div>
     </div>
 
     <div class="converter">
@@ -83,110 +112,240 @@
             <option value="lb">Pounds</option>
             <option value="oz">Ounces</option>
         </select>
-        <button onclick="convertWeight()">Convert</button>
-        <div id="weightResult"></div>
+        <div class="result" id="weightResult"></div>
     </div>
 
     <div class="converter">
         <h2>Temperature</h2>
-        <input type="number" id="tempInput" placeholder="Enter value">
-        <select id="tempFrom">
+        <input type="number" id="temperatureInput" placeholder="Enter value">
+        <select id="temperatureFrom">
             <option value="c">Celsius</option>
             <option value="f">Fahrenheit</option>
             <option value="k">Kelvin</option>
         </select>
         <span>to</span>
-        <select id="tempTo">
+        <select id="temperatureTo">
             <option value="c">Celsius</option>
             <option value="f">Fahrenheit</option>
             <option value="k">Kelvin</option>
         </select>
-        <button onclick="convertTemp()">Convert</button>
-        <div id="tempResult"></div>
+        <div class="result" id="temperatureResult"></div>
+    </div>
+
+    <div class="converter">
+        <h2>Time</h2>
+        <input type="number" id="timeInput" placeholder="Enter value">
+        <select id="timeFrom">
+            <option value="s">Seconds</option>
+            <option value="min">Minutes</option>
+            <option value="h">Hours</option>
+            <option value="d">Days</option>
+        </select>
+        <span>to</span>
+        <select id="timeTo">
+            <option value="s">Seconds</option>
+            <option value="min">Minutes</option>
+            <option value="h">Hours</option>
+            <option value="d">Days</option>
+        </select>
+        <div class="result" id="timeResult"></div>
+    </div>
+
+    <div class="converter">
+        <h2>Pressure</h2>
+        <input type="number" id="pressureInput" placeholder="Enter value">
+        <select id="pressureFrom">
+            <option value="pa">Pascals</option>
+            <option value="kpa">Kilopascals</option>
+            <option value="bar">Bars</option>
+            <option value="psi">PSI</option>
+        </select>
+        <span>to</span>
+        <select id="pressureTo">
+            <option value="pa">Pascals</option>
+            <option value="kpa">Kilopascals</option>
+            <option value="bar">Bars</option>
+            <option value="psi">PSI</option>
+        </select>
+        <div class="result" id="pressureResult"></div>
+    </div>
+
+    <div class="converter">
+        <h2>Energy</h2>
+        <input type="number" id="energyInput" placeholder="Enter value">
+        <select id="energyFrom">
+            <option value="j">Joules</option>
+            <option value="kj">Kilojoules</option>
+            <option value="cal">Calories</option>
+            <option value="wh">Watt-hours</option>
+        </select>
+        <span>to</span>
+        <select id="energyTo">
+            <option value="j">Joules</option>
+            <option value="kj">Kilojoules</option>
+            <option value="cal">Calories</option>
+            <option value="wh">Watt-hours</option>
+        </select>
+        <div class="result" id="energyResult"></div>
+    </div>
+
+    <div class="converter">
+        <h2>Power</h2>
+        <input type="number" id="powerInput" placeholder="Enter value">
+        <select id="powerFrom">
+            <option value="w">Watts</option>
+            <option value="kw">Kilowatts</option>
+            <option value="hp">Horsepower</option>
+        </select>
+        <span>to</span>
+        <select id="powerTo">
+            <option value="w">Watts</option>
+            <option value="kw">Kilowatts</option>
+            <option value="hp">Horsepower</option>
+        </select>
+        <div class="result" id="powerResult"></div>
+    </div>
+
+    <div class="converter">
+        <h2>Speed</h2>
+        <input type="number" id="speedInput" placeholder="Enter value">
+        <select id="speedFrom">
+            <option value="mps">Meters/Second</option>
+            <option value="kmph">Kilometers/Hour</option>
+            <option value="mph">Miles/Hour</option>
+            <option value="knot">Knots</option>
+        </select>
+        <span>to</span>
+        <select id="speedTo">
+            <option value="mps">Meters/Second</option>
+            <option value="kmph">Kilometers/Hour</option>
+            <option value="mph">Miles/Hour</option>
+            <option value="knot">Knots</option>
+        </select>
+        <div class="result" id="speedResult"></div>
+    </div>
+
+    <div class="converter">
+        <h2>Electrical Current</h2>
+        <input type="number" id="currentInput" placeholder="Enter value">
+        <select id="currentFrom">
+            <option value="a">Amperes</option>
+            <option value="ma">Milliamperes</option>
+            <option value="ka">Kiloamperes</option>
+        </select>
+        <span>to</span>
+        <select id="currentTo">
+            <option value="a">Amperes</option>
+            <option value="ma">Milliamperes</option>
+            <option value="ka">Kiloamperes</option>
+        </select>
+        <div class="result" id="currentResult"></div>
     </div>
 
     <script>
-        function convertLength() {
-            const value = parseFloat(document.getElementById('lengthInput').value);
-            const from = document.getElementById('lengthFrom').value;
-            const to = document.getElementById('lengthTo').value;
-            let result;
+        // Conversion Functions
+        const converters = {
+            length: (value, from, to) => {
+                const toMeters = { 'm': value, 'km': value * 1000, 'ft': value * 0.3048, 'in': value * 0.0254 };
+                const meters = toMeters[from];
+                const fromMeters = { 'm': meters, 'km': meters / 1000, 'ft': meters / 0.3048, 'in': meters / 0.0254 };
+                return fromMeters[to];
+            },
+            area: (value, from, to) => {
+                const toSqm = { 'sqm': value, 'sqkm': value * 1e6, 'sqft': value * 0.092903, 'acre': value * 4046.86 };
+                const sqm = toSqm[from];
+                const fromSqm = { 'sqm': sqm, 'sqkm': sqm / 1e6, 'sqft': sqm / 0.092903, 'acre': sqm / 4046.86 };
+                return fromSqm[to];
+            },
+            volume: (value, from, to) => {
+                const toLiters = { 'l': value, 'ml': value / 1000, 'gal': value * 3.78541, 'cuft': value * 28.3168 };
+                const liters = toLiters[from];
+                const fromLiters = { 'l': liters, 'ml': liters * 1000, 'gal': liters / 3.78541, 'cuft': liters / 28.3168 };
+                return fromLiters[to];
+            },
+            weight: (value, from, to) => {
+                const toKg = { 'kg': value, 'g': value / 1000, 'lb': value * 0.453592, 'oz': value * 0.0283495 };
+                const kg = toKg[from];
+                const fromKg = { 'kg': kg, 'g': kg * 1000, 'lb': kg / 0.453592, 'oz': kg / 0.0283495 };
+                return fromKg[to];
+            },
+            temperature: (value, from, to) => {
+                const toCelsius = { 'c': value, 'f': (value - 32) * 5/9, 'k': value - 273.15 };
+                const celsius = toCelsius[from];
+                const fromCelsius = { 'c': celsius, 'f': (celsius * 9/5) + 32, 'k': celsius + 273.15 };
+                return fromCelsius[to];
+            },
+            time: (value, from, to) => {
+                const toSeconds = { 's': value, 'min': value * 60, 'h': value * 3600, 'd': value * 86400 };
+                const seconds = toSeconds[from];
+                const fromSeconds = { 's': seconds, 'min': seconds / 60, 'h': seconds / 3600, 'd': seconds / 86400 };
+                return fromSeconds[to];
+            },
+            pressure: (value, from, to) => {
+                const toPa = { 'pa': value, 'kpa': value * 1000, 'bar': value * 1e5, 'psi': value * 6894.76 };
+                const pa = toPa[from];
+                const fromPa = { 'pa': pa, 'kpa': pa / 1000, 'bar': pa / 1e5, 'psi': pa / 6894.76 };
+                return fromPa[to];
+            },
+            energy: (value, from, to) => {
+                const toJoules = { 'j': value, 'kj': value * 1000, 'cal': value * 4.184, 'wh': value * 3600 };
+                const joules = toJoules[from];
+                const fromJoules = { 'j': joules, 'kj': joules / 1000, 'cal': joules / 4.184, 'wh': joules / 3600 };
+                return fromJoules[to];
+            },
+            power: (value, from, to) => {
+                const toWatts = { 'w': value, 'kw': value * 1000, 'hp': value * 745.7 };
+                const watts = toWatts[from];
+                const fromWatts = { 'w': watts, 'kw': watts / 1000, 'hp': watts / 745.7 };
+                return fromWatts[to];
+            },
+            speed: (value, from, to) => {
+                const toMps = { 'mps': value, 'kmph': value / 3.6, 'mph': value / 2.237, 'knot': value / 1.944 };
+                const mps = toMps[from];
+                const fromMps = { 'mps': mps, 'kmph': mps * 3.6, 'mph': mps * 2.237, 'knot': mps * 1.944 };
+                return fromMps[to];
+            },
+            current: (value, from, to) => {
+                const toAmps = { 'a': value, 'ma': value / 1000, 'ka': value * 1000 };
+                const amps = toAmps[from];
+                const fromAmps = { 'a': amps, 'ma': amps * 1000, 'ka': amps / 1000 };
+                return fromAmps[to];
+            }
+        };
 
-            // Convert to meters first
-            const toMeters = {
-                'm': value,
-                'km': value * 1000,
-                'ft': value * 0.3048,
-                'in': value * 0.0254
-            };
-            const meters = toMeters[from];
-
-            // Convert from meters to target unit
-            const fromMeters = {
-                'm': meters,
-                'km': meters / 1000,
-                'ft': meters / 0.3048,
-                'in': meters / 0.0254
-            };
-            result = fromMeters[to];
-
-            document.getElementById('lengthResult').innerText = 
-                isNaN(result) ? 'Please enter a valid number' : `${value} ${from} = ${result.toFixed(2)} ${to}`;
+        // Update Function
+        function updateConverter(category) {
+            const input = document.getElementById(`${category}Input`);
+            const from = document.getElementById(`${category}From`);
+            const to = document.getElementById(`${category}To`);
+            const result = document.getElementById(`${category}Result`);
+            
+            const value = parseFloat(input.value);
+            const fromUnit = from.value;
+            const toUnit = to.value;
+            
+            if (!isNaN(value)) {
+                const converted = converters[category](value, fromUnit, toUnit);
+                result.textContent = `${value} ${fromUnit} = ${converted.toFixed(2)} ${toUnit}`;
+            } else {
+                result.textContent = '';
+            }
         }
 
-        function convertWeight() {
-            const value = parseFloat(document.getElementById('weightInput').value);
-            const from = document.getElementById('weightFrom').value;
-            const to = document.getElementById('weightTo').value;
-            let result;
-
-            // Convert to kilograms first
-            const toKg = {
-                'kg': value,
-                'g': value / 1000,
-                'lb': value * 0.453592,
-                'oz': value * 0.0283495
-            };
-            const kg = toKg[from];
-
-            // Convert from kg to target unit
-            const fromKg = {
-                'kg': kg,
-                'g': kg * 1000,
-                'lb': kg / 0.453592,
-                'oz': kg / 0.0283495
-            };
-            result = fromKg[to];
-
-            document.getElementById('weightResult').innerText = 
-                isNaN(result) ? 'Please enter a valid number' : `${value} ${from} = ${result.toFixed(2)} ${to}`;
+        // Setup Event Listeners
+        function setupListeners(category) {
+            const input = document.getElementById(`${category}Input`);
+            const from = document.getElementById(`${category}From`);
+            const to = document.getElementById(`${category}To`);
+            
+            input.addEventListener('input', () => updateConverter(category));
+            from.addEventListener('change', () => updateConverter(category));
+            to.addEventListener('change', () => updateConverter(category));
         }
 
-        function convertTemp() {
-            const value = parseFloat(document.getElementById('tempInput').value);
-            const from = document.getElementById('tempFrom').value;
-            const to = document.getElementById('tempTo').value;
-            let result;
-
-            // Convert to Celsius first
-            const toCelsius = {
-                'c': value,
-                'f': (value - 32) * 5/9,
-                'k': value - 273.15
-            };
-            const celsius = toCelsius[from];
-
-            // Convert from Celsius to target unit
-            const fromCelsius = {
-                'c': celsius,
-                'f': (celsius * 9/5) + 32,
-                'k': celsius + 273.15
-            };
-            result = fromCelsius[to];
-
-            document.getElementById('tempResult').innerText = 
-                isNaN(result) ? 'Please enter a valid number' : `${value} ${from} = ${result.toFixed(2)} ${to}`;
-        }
+        // Initialize all converters
+        const categories = ['length', 'area', 'volume', 'weight', 'temperature', 'time', 'pressure', 'energy', 'power', 'speed', 'current'];
+        categories.forEach(category => setupListeners(category));
     </script>
 </body>
 </html>
